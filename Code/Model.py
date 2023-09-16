@@ -11,6 +11,7 @@ from tensorflow.keras import callbacks
 from tensorflow.keras.layers import Layer,Dense,Input
 from tensorflow.keras.models import Model
 from sklearn.metrics import confusion_matrix
+from DeepSVDD import autoFilter
 from Common_Model import Common_Model
 from sklearn.model_selection import KFold
 from sklearn.metrics import classification_report
@@ -18,6 +19,8 @@ from sklearn.metrics import confusion_matrix
 import datetime
 import pandas as pd
 import copy
+import pickle
+
 
 from TIMNET import TIMNET
 
@@ -100,7 +103,16 @@ class TIMNET_Model(Common_Model):
         kfold = KFold(n_splits=self.args.split_fold, shuffle=True, random_state=self.args.random_seed)
         avg_accuracy = 0
         avg_loss = 0
-        for train, test in kfold.split(x, y):
+        for index, (train, test) in enumerate(kfold.split(x, y)):
+            # train = autoFilter.filter_data(train, test, x, y, threshold=0.6)
+            # with open(f'./log/list_{index}.pkl', 'wb') as f:
+            #     pickle.dump(train, f)
+            # continue
+
+            # Loading a list from a file
+            # with open(f'./log/list_{index}.pkl', 'rb') as f:
+            #     train = pickle.load(f)
+
             self.create_model()
             y_train = smooth_labels(copy.deepcopy(y[train]), 0.1)
             folder_address = filepath+self.args.data+"_"+str(self.args.random_seed)+"_"+now_time

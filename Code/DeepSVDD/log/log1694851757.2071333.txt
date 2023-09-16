@@ -1,0 +1,32 @@
+2023-09-16 04:09:17,207 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,207 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.2071333.txt.
+2023-09-16 04:09:17,207 - root - INFO - GPU is available.
+2023-09-16 04:09:17,285 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,285 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.285063.txt.
+2023-09-16 04:09:17,285 - root - INFO - GPU is available.
+2023-09-16 04:09:17,366 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,366 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.3662581.txt.
+2023-09-16 04:09:17,366 - root - INFO - GPU is available.
+2023-09-16 04:09:17,445 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,445 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.4454572.txt.
+2023-09-16 04:09:17,445 - root - INFO - GPU is available.
+2023-09-16 04:09:17,523 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,523 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.5233455.txt.
+2023-09-16 04:09:17,523 - root - INFO - GPU is available.
+2023-09-16 04:09:17,602 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,602 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.6026695.txt.
+2023-09-16 04:09:17,602 - root - INFO - GPU is available.
+2023-09-16 04:09:17,683 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,683 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.6835077.txt.
+2023-09-16 04:09:17,683 - root - INFO - GPU is available.
+2023-09-16 04:09:17,761 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:09:17,761 - root - INFO - Log file is ./DeepSVDD/log/log1694851757.7612457.txt.
+2023-09-16 04:09:17,761 - root - INFO - GPU is available.

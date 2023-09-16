@@ -1,0 +1,4 @@
+2023-09-16 04:07:39,462 - root - INFO - 
+---Filtering Start---
+2023-09-16 04:07:39,462 - root - INFO - Log file is ./DeepSVDD/log/log1694851659.462541.txt.
+2023-09-16 04:07:39,462 - root - INFO - GPU is available.

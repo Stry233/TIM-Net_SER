@@ -1,0 +1,43 @@
+2023-09-16 01:16:34,492 - root - INFO - 
+---Filtering Start---
+2023-09-16 01:16:34,492 - root - INFO - Log file is ./DeepSVDD/log/log1694841394.4926753.txt.
+2023-09-16 01:16:34,492 - root - INFO - GPU is available.
+2023-09-16 01:16:34,634 - root - INFO - Start analyzing normal class: 0
+2023-09-16 01:16:34,754 - root - INFO - Set seed to 42.
+2023-09-16 01:16:34,754 - root - INFO - Computation device: cuda
+2023-09-16 01:16:34,754 - root - INFO - Number of dataloader workers: 0
+2023-09-16 01:16:34,755 - root - INFO - Pretraining: True
+2023-09-16 01:16:34,755 - root - INFO - 
+---Pretraining Start---
+2023-09-16 01:16:34,755 - root - INFO - Pretraining optimizer: adam
+2023-09-16 01:16:34,755 - root - INFO - Pretraining learning rate: 0.001
+2023-09-16 01:16:34,755 - root - INFO - Pretraining epochs: 100
+2023-09-16 01:16:34,755 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-09-16 01:16:34,755 - root - INFO - Pretraining batch size: 128
+2023-09-16 01:16:34,755 - root - INFO - Pretraining weight decay: 1e-06
+2023-09-16 01:16:34,765 - root - INFO - Starting pretraining on cuda...
+2023-09-16 01:16:35,281 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-09-16 01:16:35,428 - root - INFO - Epoch: 1/100
+	  Time:       0.663 sec
+	  Train Loss: 208808556.00000000
+	  Test Loss:  273248034.46153843
+	  Test AUC:   74.33
+
+2023-09-16 01:16:35,628 - root - INFO - Epoch: 2/100
+	  Time:       0.200 sec
+	  Train Loss: 208709752.00000000
+	  Test Loss:  273247688.61538464
+	  Test AUC:   74.33
+
+2023-09-16 01:16:35,825 - root - INFO - Epoch: 3/100
+	  Time:       0.197 sec
+	  Train Loss: 208415186.00000000
+	  Test Loss:  273247322.66666669
+	  Test AUC:   74.33
+
+2023-09-16 01:16:36,032 - root - INFO - Epoch: 4/100
+	  Time:       0.207 sec
+	  Train Loss: 208957972.00000000
+	  Test Loss:  273246923.89743590
+	  Test AUC:   74.33
+
