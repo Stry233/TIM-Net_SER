@@ -87,8 +87,7 @@ class TIMNET_Model(Common_Model):
                            metrics = ['accuracy'])
         print("Temporal create succes!")
         
-    def train(self, x, y):
-
+    def train(self, x, y, filtering=True):
         filepath = self.args.model_path
         resultpath = self.args.result_path
 
@@ -104,14 +103,8 @@ class TIMNET_Model(Common_Model):
         avg_accuracy = 0
         avg_loss = 0
         for index, (train, test) in enumerate(kfold.split(x, y)):
-            # train = autoFilter.filter_data(train, test, x, y, threshold=0.6)
-            # with open(f'./log/list_{index}.pkl', 'wb') as f:
-            #     pickle.dump(train, f)
-            # continue
-
-            # Loading a list from a file
-            # with open(f'./log/list_{index}.pkl', 'rb') as f:
-            #     train = pickle.load(f)
+            if filtering:
+                train = autoFilter.filter_data(train, test, x, y, threshold=0.6)
 
             self.create_model()
             y_train = smooth_labels(copy.deepcopy(y[train]), 0.1)

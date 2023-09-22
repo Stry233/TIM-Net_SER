@@ -35,7 +35,7 @@ class SERDataset(base_dataset.BaseADDataset):
         self.normal_class = normal_class
 
         self.train_set = MyMFCCDataset({'inputs': self.train_set, 'labels': self.train_labels})
-        self.test_set = MyMFCCDataset({'inputs': self.test_set , 'labels': self.test_labels},
+        self.test_set = MyMFCCDataset({'inputs': self.test_set, 'labels': self.test_labels},
                                       target_transform=self.target_transform)
 
         # Subset train set to normal class

@@ -10,7 +10,7 @@ class Common_Model(object):
         self.model = None
         self.trained = False 
 
-    def train(self, x_train, y_train, x_val, y_val):
+    def train(self, x_train, y_train, x_val, y_val, filtering=True):
         raise NotImplementedError()
 
     def predict(self, samples):

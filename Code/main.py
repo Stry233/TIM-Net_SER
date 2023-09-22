@@ -10,6 +10,16 @@ import matplotlib.pyplot as plt
 from Model import TIMNET_Model
 import argparse
 
+
+def str2bool(v):
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--mode', type=str, default="train")
@@ -31,6 +41,7 @@ parser.add_argument('--kernel_size', type=int, default=2)
 parser.add_argument('--stack_size', type=int, default=1)
 parser.add_argument('--split_fold', type=int, default=10)
 parser.add_argument('--gpu', type=str, default='0')
+parser.add_argument('--filtering', type=str2bool, default=True)
 
 args = parser.parse_args()
 
@@ -66,7 +77,7 @@ CLASS_LABELS = CLASS_LABELS_dict[args.data]
 
 model = TIMNET_Model(args=args, input_shape=x_source.shape[1:], class_label=CLASS_LABELS)
 if args.mode=="train":
-    model.train(x_source, y_source)
+    model.train(x_source, y_source, filtering=args.filtering)
 elif args.mode=="test":
     x_feats, y_labels = model.test(x_source, y_source, path=args.test_path)# x_feats and y_labels are test datas for t-sne
   

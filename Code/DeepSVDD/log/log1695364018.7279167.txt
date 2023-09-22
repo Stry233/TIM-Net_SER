@@ -1,0 +1,55 @@
+2023-09-22 02:26:58,728 - root - INFO - 
+---Filtering Start---
+2023-09-22 02:26:58,728 - root - INFO - Log file is ./DeepSVDD/log/log1695364018.7279167.txt.
+2023-09-22 02:26:58,728 - root - INFO - GPU is available.
+2023-09-22 02:26:58,803 - root - INFO - Start analyzing normal class: 0 / 4
+2023-09-22 02:26:58,868 - root - INFO - Set seed to 42.
+2023-09-22 02:26:58,868 - root - INFO - Computation device: cuda
+2023-09-22 02:26:58,868 - root - INFO - Number of dataloader workers: 0
+2023-09-22 02:26:58,869 - root - INFO - Pretraining: True
+2023-09-22 02:26:58,869 - root - INFO - 
+---Pretraining Start---
+2023-09-22 02:26:58,869 - root - INFO - Pretraining optimizer: adam
+2023-09-22 02:26:58,869 - root - INFO - Pretraining learning rate: 0.001
+2023-09-22 02:26:58,869 - root - INFO - Pretraining epochs: 100
+2023-09-22 02:26:58,869 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-09-22 02:26:58,870 - root - INFO - Pretraining batch size: 20
+2023-09-22 02:26:58,870 - root - INFO - Pretraining weight decay: 1e-06
+2023-09-22 02:26:58,880 - root - INFO - Starting pretraining on cuda...
+2023-09-22 02:26:59,870 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-09-22 02:26:59,892 - root - INFO - Epoch: 1/100
+	  Time:       1.012 sec
+	  Train Loss: 208737065.91999999
+	  Test Loss:  269580664.57142860
+	  Test AUC:   70.10
+
+2023-09-22 02:26:59,969 - root - INFO - Epoch: 2/100
+	  Time:       0.077 sec
+	  Train Loss: 208394549.44000000
+	  Test Loss:  267635892.57142857
+	  Test AUC:   69.67
+
+2023-09-22 02:27:00,050 - root - INFO - Epoch: 3/100
+	  Time:       0.081 sec
+	  Train Loss: 206585087.36000001
+	  Test Loss:  266620571.42857143
+	  Test AUC:   69.62
+
+2023-09-22 02:27:00,133 - root - INFO - Epoch: 4/100
+	  Time:       0.083 sec
+	  Train Loss: 206271019.84000000
+	  Test Loss:  266339921.14285713
+	  Test AUC:   69.57
+
+2023-09-22 02:27:00,224 - root - INFO - Epoch: 5/100
+	  Time:       0.091 sec
+	  Train Loss: 206170032.63999999
+	  Test Loss:  265996882.28571430
+	  Test AUC:   69.48
+
+2023-09-22 02:27:00,321 - root - INFO - Epoch: 6/100
+	  Time:       0.097 sec
+	  Train Loss: 205841563.84000000
+	  Test Loss:  265819289.71428570
+	  Test AUC:   69.45
+

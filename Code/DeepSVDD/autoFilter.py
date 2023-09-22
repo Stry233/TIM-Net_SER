@@ -187,7 +187,9 @@ def filter_data(mask_index_train, mask_index_test, all_data, all_label, threshol
         # print(indices)
 
     filtered_x_index = sorted([int(t.item()) for sublist in indices for t in sublist])
-    print(filtered_x_index)
+    training_indices = [index for index in mask_index_train if index in filtered_x_index]
 
-    return filtered_x_index
+    print(training_indices)
+
+    return training_indices
 
