@@ -34,7 +34,7 @@ class GeneralNet_Autoencoder(BaseNet):
     def __init__(self):
         super().__init__()
         input_size = 23634
-        self.rep_dim = 128
+        self.rep_dim = 256
         self.en_coder = nn.Sequential(OrderedDict([
             # encoder
             ('en_1', nn.Linear(input_size, int(input_size / 2))),

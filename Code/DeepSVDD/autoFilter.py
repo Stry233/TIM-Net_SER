@@ -45,7 +45,7 @@ def calculate_label_score(data, deepSVDD):
             labels.cpu().data.numpy().tolist()[0],
             scores.cpu().data.numpy().tolist()[0]]
 
-def one_class_filter(dataset, net_name, logger, xp_path="./DeepSVDD/models/",
+def one_class_filter(input_shape, dataset, net_name, logger, xp_path="./DeepSVDD/models/",
                      objective='one-class', nu=0.1, device='cuda', seed=42,
                      optimizer_name='adam', lr=0.001, n_epochs=50, lr_milestone=None, batch_size=20,
                      weight_decay=1e-6, pretrain=True, ae_optimizer_name='adam', ae_lr=0.001,
@@ -72,7 +72,7 @@ def one_class_filter(dataset, net_name, logger, xp_path="./DeepSVDD/models/",
 
     # Initialize DeepSVDD model and set neural network \phi
     deep_SVDD = DeepSVDD(objective, nu)
-    deep_SVDD.set_network(net_name)
+    deep_SVDD.set_network(net_name, input_shape)
 
     logger.info('Pretraining: %s' % pretrain)
     if pretrain:
@@ -86,7 +86,7 @@ def one_class_filter(dataset, net_name, logger, xp_path="./DeepSVDD/models/",
         logger.info('Pretraining weight decay: %g' % ae_weight_decay)
 
         # Pretrain model on dataset (via autoencoder)
-        deep_SVDD.pretrain(dataset,
+        deep_SVDD.pretrain(input_shape, dataset,
                            optimizer_name=ae_optimizer_name,
                            lr=ae_lr,
                            n_epochs=ae_n_epochs,
@@ -155,7 +155,7 @@ def infer(dataset, deep_SVDD, threshold):
 
 def filter_data(mask_index_train, mask_index_test, all_data, all_label, threshold=0.8):
     # Set up logging
-    print("train", mask_index_train)
+    # print("train", mask_index_train)
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
@@ -179,17 +179,17 @@ def filter_data(mask_index_train, mask_index_test, all_data, all_label, threshol
 
     num_classes = len(set(tuple(row) for row in train_label))
     indices = []
-    for cur_class in range(4):
+    for cur_class in range(num_classes):
         logger.info(f'Start analyzing normal class: {cur_class} / {num_classes}')
         dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class)
-        deepSvdd = one_class_filter(dataset, 'general_cnn', logger)
+        deepSvdd = one_class_filter((all_data.shape[1], all_data.shape[2]), dataset, 'general_cnn', logger)
         indices.append(infer(dataset, deepSvdd, threshold=threshold))
         # print(indices)
 
     filtered_x_index = sorted([int(t.item()) for sublist in indices for t in sublist])
     training_indices = [index for index in mask_index_train if index in filtered_x_index]
 
-    print(training_indices)
+    # print(training_indices)
 
     return training_indices
 

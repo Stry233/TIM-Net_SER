@@ -5,7 +5,7 @@ from DeepSVDD.base.base_net import BaseNet
 
 class GeneralCNN(BaseNet):
 
-    def __init__(self):
+    def __init__(self, input_shape):
         super().__init__()
 
         # Assuming the data is of shape [batch_size, 606, 39]
@@ -13,7 +13,7 @@ class GeneralCNN(BaseNet):
         self.rep_dim = 288
 
         self.encoder = nn.Sequential(
-            nn.Conv1d(606, 64, kernel_size=3, stride=1, padding=1),
+            nn.Conv1d(input_shape[0], 64, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
             nn.MaxPool1d(kernel_size=2, stride=2),
             nn.Conv1d(64, 32, kernel_size=3, stride=1, padding=1),
@@ -29,7 +29,7 @@ class GeneralCNN(BaseNet):
 
 class GeneralCNN_Autoencoder(BaseNet):
 
-    def __init__(self):
+    def __init__(self, input_shape):
         super().__init__()
 
         # Assuming the data is of shape [batch_size, 606, 39]
@@ -38,7 +38,7 @@ class GeneralCNN_Autoencoder(BaseNet):
 
         # Encoder
         self.encoder = nn.Sequential(
-            nn.Conv1d(606, 64, kernel_size=3, stride=1, padding=1),
+            nn.Conv1d(input_shape[0], 64, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
             nn.MaxPool1d(kernel_size=2, stride=2),
             nn.Conv1d(64, 32, kernel_size=3, stride=1, padding=1),
@@ -50,7 +50,7 @@ class GeneralCNN_Autoencoder(BaseNet):
         self.decoder = nn.Sequential(
             nn.ConvTranspose1d(32, 64, kernel_size=2, stride=2, padding=0, output_padding=1),
             nn.ReLU(),
-            nn.ConvTranspose1d(64, 606, kernel_size=2, stride=2, padding=0, output_padding=1),
+            nn.ConvTranspose1d(64, input_shape[0], kernel_size=2, stride=2, padding=0, output_padding=1),
             nn.ReLU()
         )
 
