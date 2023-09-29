@@ -34,7 +34,7 @@ class GeneralCNN_Autoencoder(BaseNet):
 
         # Assuming the data is of shape [batch_size, 606, 39]
         # We can treat it as [batch_size, 1, 606, 39] for convolutional layers
-        self.rep_dim = 128
+        self.rep_dim = 228
 
         # Encoder
         self.encoder = nn.Sequential(
