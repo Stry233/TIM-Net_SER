@@ -1,0 +1,193 @@
+2023-09-29 08:45:40,848 - root - INFO - 
+---Filtering Start---
+2023-09-29 08:45:40,848 - root - INFO - Log file is ./DeepSVDD/log/log1695991540.848587.txt.
+2023-09-29 08:45:40,848 - root - INFO - GPU is available.
+2023-09-29 08:45:40,851 - root - INFO - Start analyzing normal class: 0 / 7
+2023-09-29 08:45:40,854 - root - INFO - Set seed to 42.
+2023-09-29 08:45:40,854 - root - INFO - Computation device: cuda
+2023-09-29 08:45:40,854 - root - INFO - Number of dataloader workers: 0
+2023-09-29 08:45:40,859 - root - INFO - Pretraining: True
+2023-09-29 08:45:40,859 - root - INFO - 
+---Pretraining Start---
+2023-09-29 08:45:40,859 - root - INFO - Pretraining optimizer: adam
+2023-09-29 08:45:40,859 - root - INFO - Pretraining learning rate: 0.001
+2023-09-29 08:45:40,859 - root - INFO - Pretraining epochs: 100
+2023-09-29 08:45:40,859 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-09-29 08:45:40,859 - root - INFO - Pretraining batch size: 20
+2023-09-29 08:45:40,859 - root - INFO - Pretraining weight decay: 1e-06
+2023-09-29 08:45:40,925 - root - INFO - Starting pretraining on cuda...
+2023-09-29 08:45:42,282 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-09-29 08:45:42,330 - root - INFO - Epoch: 1/100
+	  Time:       1.403 sec
+	  Train Loss: 38097830.00000000
+	  Test Loss:  33258146.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:42,577 - root - INFO - Epoch: 2/100
+	  Time:       0.246 sec
+	  Train Loss: 37925265.33333334
+	  Test Loss:  33260724.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:42,826 - root - INFO - Epoch: 3/100
+	  Time:       0.248 sec
+	  Train Loss: 37903656.00000000
+	  Test Loss:  33263928.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:43,072 - root - INFO - Epoch: 4/100
+	  Time:       0.244 sec
+	  Train Loss: 38003539.33333334
+	  Test Loss:  33267452.66666667
+	  Test AUC:   33.04
+
+2023-09-29 08:45:43,392 - root - INFO - Epoch: 5/100
+	  Time:       0.319 sec
+	  Train Loss: 37926996.00000000
+	  Test Loss:  33269571.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:43,663 - root - INFO - Epoch: 6/100
+	  Time:       0.269 sec
+	  Train Loss: 38151793.33333334
+	  Test Loss:  33272586.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:43,913 - root - INFO - Epoch: 7/100
+	  Time:       0.249 sec
+	  Train Loss: 37968620.66666666
+	  Test Loss:  33273933.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:44,174 - root - INFO - Epoch: 8/100
+	  Time:       0.260 sec
+	  Train Loss: 37977901.33333334
+	  Test Loss:  33274264.66666667
+	  Test AUC:   33.04
+
+2023-09-29 08:45:44,420 - root - INFO - Epoch: 9/100
+	  Time:       0.244 sec
+	  Train Loss: 37988510.00000000
+	  Test Loss:  33275064.66666667
+	  Test AUC:   33.04
+
+2023-09-29 08:45:44,670 - root - INFO - Epoch: 10/100
+	  Time:       0.249 sec
+	  Train Loss: 38007185.33333334
+	  Test Loss:  33273333.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:44,916 - root - INFO - Epoch: 11/100
+	  Time:       0.244 sec
+	  Train Loss: 37850711.33333334
+	  Test Loss:  33273558.66666667
+	  Test AUC:   33.04
+
+2023-09-29 08:45:45,166 - root - INFO - Epoch: 12/100
+	  Time:       0.248 sec
+	  Train Loss: 37992192.00000000
+	  Test Loss:  33271351.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:45,411 - root - INFO - Epoch: 13/100
+	  Time:       0.244 sec
+	  Train Loss: 38067100.00000000
+	  Test Loss:  33270422.66666667
+	  Test AUC:   33.04
+
+2023-09-29 08:45:45,675 - root - INFO - Epoch: 14/100
+	  Time:       0.263 sec
+	  Train Loss: 38076392.66666666
+	  Test Loss:  33267336.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:45,919 - root - INFO - Epoch: 15/100
+	  Time:       0.243 sec
+	  Train Loss: 38099882.66666666
+	  Test Loss:  33265476.66666667
+	  Test AUC:   33.04
+
+2023-09-29 08:45:46,173 - root - INFO - Epoch: 16/100
+	  Time:       0.252 sec
+	  Train Loss: 38012016.00000000
+	  Test Loss:  33265031.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:46,418 - root - INFO - Epoch: 17/100
+	  Time:       0.244 sec
+	  Train Loss: 37895012.00000000
+	  Test Loss:  33266310.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:46,671 - root - INFO - Epoch: 18/100
+	  Time:       0.252 sec
+	  Train Loss: 37923020.00000000
+	  Test Loss:  33264678.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:46,916 - root - INFO - Epoch: 19/100
+	  Time:       0.244 sec
+	  Train Loss: 37726544.66666666
+	  Test Loss:  33264486.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:47,170 - root - INFO - Epoch: 20/100
+	  Time:       0.253 sec
+	  Train Loss: 38132531.66666666
+	  Test Loss:  33267808.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:47,416 - root - INFO - Epoch: 21/100
+	  Time:       0.245 sec
+	  Train Loss: 37722010.66666666
+	  Test Loss:  33267185.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:47,677 - root - INFO - Epoch: 22/100
+	  Time:       0.259 sec
+	  Train Loss: 37978470.66666666
+	  Test Loss:  33265157.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:47,922 - root - INFO - Epoch: 23/100
+	  Time:       0.244 sec
+	  Train Loss: 37869094.00000000
+	  Test Loss:  33264450.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:48,174 - root - INFO - Epoch: 24/100
+	  Time:       0.251 sec
+	  Train Loss: 37892778.66666666
+	  Test Loss:  33264184.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:48,430 - root - INFO - Epoch: 25/100
+	  Time:       0.255 sec
+	  Train Loss: 37921921.33333334
+	  Test Loss:  33263323.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:48,699 - root - INFO - Epoch: 26/100
+	  Time:       0.268 sec
+	  Train Loss: 37772349.33333334
+	  Test Loss:  33262524.00000000
+	  Test AUC:   33.04
+
+2023-09-29 08:45:48,948 - root - INFO - Epoch: 27/100
+	  Time:       0.247 sec
+	  Train Loss: 37874005.33333334
+	  Test Loss:  33267873.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:49,276 - root - INFO - Epoch: 28/100
+	  Time:       0.327 sec
+	  Train Loss: 37813340.00000000
+	  Test Loss:  33264441.33333333
+	  Test AUC:   33.04
+
+2023-09-29 08:45:49,536 - root - INFO - Epoch: 29/100
+	  Time:       0.258 sec
+	  Train Loss: 37913376.00000000
+	  Test Loss:  33261204.66666667
+	  Test AUC:   33.04
+

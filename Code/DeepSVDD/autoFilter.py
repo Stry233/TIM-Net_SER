@@ -182,7 +182,7 @@ def filter_data(mask_index_train, mask_index_test, all_data, all_label, threshol
     for cur_class in range(num_classes):
         logger.info(f'Start analyzing normal class: {cur_class} / {num_classes}')
         dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class)
-        deepSvdd = one_class_filter((all_data.shape[1], all_data.shape[2]), dataset, 'general_cnn', logger)
+        deepSvdd = one_class_filter((all_data.shape[1], all_data.shape[2]), dataset, 'general_complex', logger)
         indices.append(infer(dataset, deepSvdd, threshold=threshold))
         # print(indices)
 

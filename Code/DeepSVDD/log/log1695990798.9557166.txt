@@ -1,0 +1,8 @@
+2023-09-29 08:33:18,955 - root - INFO - 
+---Filtering Start---
+2023-09-29 08:33:18,956 - root - INFO - Log file is ./DeepSVDD/log/log1695990798.9557166.txt.
+2023-09-29 08:33:18,956 - root - INFO - GPU is available.
+2023-09-29 08:33:18,958 - root - INFO - Start analyzing normal class: 0 / 7
+2023-09-29 08:33:18,960 - root - INFO - Set seed to 42.
+2023-09-29 08:33:18,961 - root - INFO - Computation device: cuda
+2023-09-29 08:33:18,961 - root - INFO - Number of dataloader workers: 0

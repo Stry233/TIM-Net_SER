@@ -1,0 +1,18 @@
+2023-09-29 08:15:11,911 - root - INFO - 
+---Filtering Start---
+2023-09-29 08:15:11,911 - root - INFO - Log file is ./DeepSVDD/log/log1695989711.9114563.txt.
+2023-09-29 08:15:11,911 - root - INFO - GPU is available.
+2023-09-29 08:15:11,914 - root - INFO - Start analyzing normal class: 0 / 7
+2023-09-29 08:15:11,916 - root - INFO - Set seed to 42.
+2023-09-29 08:15:11,916 - root - INFO - Computation device: cuda
+2023-09-29 08:15:11,916 - root - INFO - Number of dataloader workers: 0
+2023-09-29 08:15:11,921 - root - INFO - Pretraining: True
+2023-09-29 08:15:11,921 - root - INFO - 
+---Pretraining Start---
+2023-09-29 08:15:11,921 - root - INFO - Pretraining optimizer: adam
+2023-09-29 08:15:11,921 - root - INFO - Pretraining learning rate: 0.001
+2023-09-29 08:15:11,921 - root - INFO - Pretraining epochs: 100
+2023-09-29 08:15:11,921 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-09-29 08:15:11,921 - root - INFO - Pretraining batch size: 20
+2023-09-29 08:15:11,921 - root - INFO - Pretraining weight decay: 1e-06
+2023-09-29 08:15:11,986 - root - INFO - Starting pretraining on cuda...
