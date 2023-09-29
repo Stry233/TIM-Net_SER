@@ -30,17 +30,6 @@ device = torch.device('cuda:0')
 
  
 
-class WeightLayer(nn.Module):
-    def __init__(self, input_size, output_size):
-        super(WeightLayer, self).__init__()
-        self.kernel = nn.Parameter(torch.rand(input_size, output_size))
-        torch.nn.init.normal_(self.kernel,mean=0, std=1.0)
-
-    def forward(self, x):
-        #tempx = torch.permute(x, (0,2,1))
-        x = torch.matmul(x,self.kernel)
-        x = torch.squeeze(x,-1)
-        return  x
 
 class TIMNET_Encoder(BaseNet):
     def __init__(self,input_shape,
@@ -48,6 +37,8 @@ class TIMNET_Encoder(BaseNet):
         super(TIMNET_Encoder, self).__init__()
         self.data_shape = input_shape
         print("TIMNET MODEL SHAPE:",input_shape)
+
+        self.rep_dim = dilation_size * input_shape[2]
 
 
         self.tim = TIMNET(
@@ -177,17 +168,46 @@ class Linear_Decoder(BaseNet):
         out = torch.permute(out, (0, 2, 1))
         return out
     
+
+class Linear_Autoencoder(BaseNet):
+    def __init__(self,input_shape,
+                 filter_size,kernel_size,stack_size,dilation_size,dropout
+                 ):
+        super(Linear_Autoencoder, self).__init__()
+        self.rep_dim = dilation_size * input_shape[2]
+        
+        self.encoder = TIMNET_Encoder(x.shape,filter_size,kernel_size, stack_size,dilation_size,dropout)
+
+        self.decoder = Linear_Decoder(input_shape[2],dilation_size,input_shape[1],dropout)
+    
+    def forward(self, x):
+        
+        latent_space = self.encoder(x)
+        return self.decoder(latent_space)
+    
+
+
+class Conv_Autoencoder(BaseNet):
+    def __init__(self,input_shape,
+                 filter_size,kernel_size,stack_size,dilation_size,dropout
+                 ):
+        super(Conv_Autoencoder, self).__init__()
+        self.rep_dim = dilation_size * input_shape[2]
+        
+        self.encoder = TIMNET_Encoder(x.shape,filter_size,kernel_size, stack_size,dilation_size,dropout)
+
+        self.decoder = Conv_Decoder(input_shape[2],dilation_size,input_shape[1],1,dropout)
+    
+    def forward(self, x):
+        
+        latent_space = self.encoder(x)
+        return self.decoder(latent_space)
+
+
 if __name__ == "__main__":
     x = torch.rand(5, 606, 39)
 
-    tim = TIMNET_Encoder(x.shape, 39, 2, 1, 10, 0.1)
-    de1 = Linear_Decoder(39, 10, 606, 0.1)
-    de2 = Conv_Decoder(39, 10, 606,1, 0.1)
-    y = tim.forward(x)
-
-    # input = torch.split(y, split_size_or_sections= 10, dim=1)
-    # input = torch.stack(input, dim=1)
-
-    x1 = de1.forward(y)
-    x2 = de2.forward(y)
-    print(y)
+    l1 = Linear_Autoencoder(x.shape,39,2,1,10,0.1)
+    c1 = Conv_Autoencoder(x.shape,39,2,1,10,0.1)
+    y1 = l1.forward(x)
+    y2 = c1.forward(x)
