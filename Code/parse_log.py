@@ -2,8 +2,8 @@
 import re
 import matplotlib.pyplot as plt
 
-dataset = "SAVEE"
-mode = 'opt' # 'bl'
+dataset = "RAVDE"
+mode = 'bl' # 'bl'
 
 # Read the file
 with open(f"log/{dataset}_{mode}.txt", "r") as file:
@@ -22,7 +22,7 @@ pattern = r"val_loss: (\d+\.\d+) - val_accuracy: (\d+\.\d+)"
 
 for line in lines:
     # Check if it's the start of a new fold
-    if "---Start evaluation---" in line:
+    if "Temporal create succes!" in line:
         # If we already have data for the previous fold, append it to the main list
         if current_fold_val_loss and current_fold_val_accuracy:
             folds_val_loss.append(current_fold_val_loss)

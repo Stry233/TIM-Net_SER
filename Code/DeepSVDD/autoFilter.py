@@ -47,9 +47,9 @@ def calculate_label_score(data, deepSVDD):
 
 def one_class_filter(input_shape, dataset, net_name, logger, xp_path="./DeepSVDD/models/",
                      objective='one-class', nu=0.1, device='cuda', seed=42,
-                     optimizer_name='adam', lr=0.001, n_epochs=50, lr_milestone=None, batch_size=20,
+                     optimizer_name='adam', lr=0.001, n_epochs=200, lr_milestone=None, batch_size=20,
                      weight_decay=1e-6, pretrain=True, ae_optimizer_name='adam', ae_lr=0.001,
-                     ae_n_epochs=100, ae_lr_milestone=None, ae_batch_size=20, ae_weight_decay=1e-6,
+                     ae_n_epochs=400, ae_lr_milestone=None, ae_batch_size=20, ae_weight_decay=1e-6,
                      n_jobs_dataloader=0):
 
     if lr_milestone is None:
@@ -128,32 +128,30 @@ def one_class_filter(input_shape, dataset, net_name, logger, xp_path="./DeepSVDD
     # deep_SVDD.save_model(export_model=xp_path + '/model.tar')
     return deep_SVDD
 
-def infer(dataset, deep_SVDD, threshold):
 
-    # Get train data loader
-    train_loader, test_loader = dataset.loaders(batch_size=1, shuffle_train=False, shuffle_test=False)
-
-    eval_loader = train_loader
+def infer(dataset, deep_SVDD, threshold, train=True, get_index=True):
+    # Get appropriate loader
+    eval_loader = dataset.loaders(batch_size=1, shuffle_train=False, shuffle_test=False)[0 if train else 1]
 
     print('---Start evaluation---')
-    all_res = []
-    with torch.no_grad():
-        for data in eval_loader:
-            content = calculate_label_score(data, deep_SVDD)
-            all_res.append(content)  # idx, label, scores
 
-    # Extract scores from all_res
+    # Calculate scores and indices
+    with torch.no_grad():
+        all_res = [calculate_label_score(data, deep_SVDD) for data in eval_loader]
+
     all_scores = [item[2] for item in all_res]
 
     # Normalize scores
-    min_score = min(all_scores)
-    max_score = max(all_scores)
-    normalized_scores = [(score - min_score) / (max_score - min_score) for score in all_scores]
+    min_score, max_score = min(all_scores), max(all_scores)
+    normalized_scores =  [(score - min_score) / (max_score - min_score) for score in all_scores]
 
-    return [idx for (inputs, labels, idx), score in zip(eval_loader, normalized_scores) if score <= threshold]
+    if get_index:
+        return [idx for (inputs, labels, idx), score in zip(eval_loader, normalized_scores) if score <= threshold]
+    else:
+        return {idx : score for (inputs, labels, idx), score in zip(eval_loader, normalized_scores)}
 
 
-def filter_data(mask_index_train, mask_index_test, all_data, all_label, threshold=0.8):
+def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_label, threshold=0.8):
     # Set up logging
     # print("train", mask_index_train)
     logging.basicConfig(level=logging.INFO)
@@ -178,18 +176,23 @@ def filter_data(mask_index_train, mask_index_test, all_data, all_label, threshol
     test_label = all_label[mask_index_test]
 
     num_classes = len(set(tuple(row) for row in train_label))
-    indices = []
+    indices_train = []
+    score_test = []
     for cur_class in range(num_classes):
         logger.info(f'Start analyzing normal class: {cur_class} / {num_classes}')
         dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class)
         deepSvdd = one_class_filter((all_data.shape[1], all_data.shape[2]), dataset, 'general_complex', logger)
-        indices.append(infer(dataset, deepSvdd, threshold=threshold))
-        # print(indices)
+        indices_train.append(infer(dataset, deepSvdd, threshold=threshold, train=True))
+        dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class, filter_test=True)
+        score_test.append(infer(dataset, deepSvdd, threshold=threshold, train=False, get_index=False))
+    print(score_test)
+    flattened_scores = {k: v for d in score_test for k, v in d.items()}
+    test_scores = list(dict(sorted(flattened_scores.items())).values())
 
-    filtered_x_index = sorted([int(t.item()) for sublist in indices for t in sublist])
-    training_indices = [index for index in mask_index_train if index in filtered_x_index]
+    filtered_x_index = sorted([int(t.item()) for sublist in indices_train for t in sublist])
+    training_indices = [index for index in mask_index_train if index in filtered_x_index] if filtering else mask_index_train
 
     # print(training_indices)
 
-    return training_indices
+    return training_indices, test_scores
 

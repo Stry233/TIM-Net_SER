@@ -19,7 +19,7 @@ def get_target_label_idx(labels, targets):
 
 class SERDataset(base_dataset.BaseADDataset):
 
-    def __init__(self, x_train, y_train, x_test, y_test, normal_class=0, random_state=42):
+    def __init__(self, x_train, y_train, x_test, y_test, normal_class=0, filter_test=False, random_state=42):
         super().__init__(root="")
 
         self.train_set = np.array(x_train)
@@ -41,6 +41,9 @@ class SERDataset(base_dataset.BaseADDataset):
         # Subset train set to normal class
         train_idx_normal = get_target_label_idx(self.train_labels, self.normal_class)
         self.train_set = Subset(self.train_set, train_idx_normal)
+        if filter_test:
+            test_idx_normal = get_target_label_idx(self.test_labels, self.normal_class)
+            self.test_set = Subset(self.test_set, test_idx_normal)
         # print(len(self.train_set))
 
     def __len__(self):

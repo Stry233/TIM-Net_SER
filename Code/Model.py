@@ -103,8 +103,7 @@ class TIMNET_Model(Common_Model):
         avg_accuracy = 0
         avg_loss = 0
         for index, (train, test) in enumerate(kfold.split(x, y)):
-            if filtering:
-                train = autoFilter.filter_data(train, test, x, y, threshold=0.6)
+            train, test_score = autoFilter.filter_data(filtering, train, test, x, y, threshold=0.6)
 
             self.create_model()
             y_train = smooth_labels(copy.deepcopy(y[train]), 0.1)
@@ -123,6 +122,27 @@ class TIMNET_Model(Common_Model):
             print(str(i)+'_Model evaluation: ', best_eva_list,"   Now ACC:",str(round(avg_accuracy*10000)/100/i))
             i+=1
             y_pred_best = self.model.predict(x[test])
+            y_pred_labels = np.argmax(y_pred_best, axis=1)
+            y_true_labels = np.argmax(y[test], axis=1)
+
+            if filtering:
+                # Extract indices of misclassified and correctly classified samples
+                misclassified_indices = np.where(y_pred_labels != y_true_labels)[0]
+                correctly_classified_indices = np.where(y_pred_labels == y_true_labels)[0]
+                print(misclassified_indices, correctly_classified_indices)
+
+                # Extract test_score values for both sets of samples
+                # print(test_score)
+                misclassified_scores = [test_score[i] for i in misclassified_indices]
+                correctly_classified_scores = [test_score[i] for i in correctly_classified_indices]
+
+                # Calculate average scores
+                avg_misclassified_score = np.mean(misclassified_scores)
+                avg_correctly_classified_score = np.mean(correctly_classified_scores)
+
+                print(f"Average test_score for misclassified samples: {avg_misclassified_score}")
+                print(f"Average test_score for correctly classified samples: {avg_correctly_classified_score}")
+
             self.matrix.append(confusion_matrix(np.argmax(y[test],axis=1),np.argmax(y_pred_best,axis=1)))
             em = classification_report(np.argmax(y[test],axis=1),np.argmax(y_pred_best,axis=1), target_names=self.class_label,output_dict=True)
             self.eva_matrix.append(em)
