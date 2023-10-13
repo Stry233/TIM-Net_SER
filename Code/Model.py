@@ -104,6 +104,8 @@ class TIMNET_Model(Common_Model):
         avg_loss = 0
         for index, (train, test) in enumerate(kfold.split(x, y)):
             train, test_score = autoFilter.filter_data(filtering, train, test, x, y, threshold=0.6)
+            test_inlier = None # np array
+            test_outlier = None
 
             self.create_model()
             y_train = smooth_labels(copy.deepcopy(y[train]), 0.1)
@@ -116,10 +118,17 @@ class TIMNET_Model(Common_Model):
             best_eva_list = []
             h = self.model.fit(x[train], y_train,validation_data=(x[test],  y[test]),batch_size = self.args.batch_size, epochs = self.args.epoch, verbose=1,callbacks=[checkpoint])
             self.model.load_weights(weight_path)
-            best_eva_list = self.model.evaluate(x[test],  y[test])
-            avg_loss += best_eva_list[0]
-            avg_accuracy += best_eva_list[1]
-            print(str(i)+'_Model evaluation: ', best_eva_list,"   Now ACC:",str(round(avg_accuracy*10000)/100/i))
+            # evaluate test inlier
+            best_eva_list = self.model.evaluate(x[test_inlier],  y[test_inlier])
+            avg_loss += best_eva_list[0] * float(test_inlier.shape[0])/(test_inlier.shape[0] + test_outlier.shape[0])
+            avg_accuracy += best_eva_list[1] *float(test_inlier.shape[0])/(test_inlier.shape[0] + test_outlier.shape[0])
+            print(str(i)+'Inlier Model evaluation: ', best_eva_list)
+            # evaluate outlier
+            best_eva_list = self.model.evaluate(x[test_outlier],  y[test_outlier])
+            avg_loss += best_eva_list[0] *float(test_outlier.shape[0])/(test_inlier.shape[0] + test_outlier.shape[0])
+            avg_accuracy += best_eva_list[1] * float(test_outlier.shape[0])/(test_inlier.shape[0] + test_outlier.shape[0])
+            print(str(i)+'Outlier Model evaluation: ', best_eva_list,"   Now ACC:")
+
             i+=1
             y_pred_best = self.model.predict(x[test])
             y_pred_labels = np.argmax(y_pred_best, axis=1)
