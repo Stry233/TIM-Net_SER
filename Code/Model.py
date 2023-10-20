@@ -100,10 +100,12 @@ class TIMNET_Model(Common_Model):
         now = datetime.datetime.now()
         now_time = datetime.datetime.strftime(now,'%Y-%m-%d_%H-%M-%S')
         kfold = KFold(n_splits=self.args.split_fold, shuffle=True, random_state=self.args.random_seed)
-        avg_accuracy = 0
-        avg_loss = 0
+        avg_accuracy_inlier = 0
+        avg_loss_inlier = 0
+        avg_accuracy_outlier = 0
+        avg_loss_outlier = 0
         for index, (train, test) in enumerate(kfold.split(x, y)):
-            train, test_score = autoFilter.filter_data(filtering, train, test, x, y, threshold=0.6)
+            train, test_inlier, test_score = autoFilter.filter_data(filtering, train, test, x, y, threshold=0.6)
 
             self.create_model()
             y_train = smooth_labels(copy.deepcopy(y[train]), 0.1)
@@ -113,13 +115,23 @@ class TIMNET_Model(Common_Model):
             weight_path=folder_address+'/'+str(self.args.split_fold)+"-fold_weights_best_"+str(i)+".hdf5"
             checkpoint = callbacks.ModelCheckpoint(weight_path, verbose=1, save_weights_only=True, save_best_only=False)
             max_acc = 0
-            best_eva_list = []
+            best_eva_list_inlier = []
+            best_eva_list_outlier = []
             h = self.model.fit(x[train], y_train,validation_data=(x[test],  y[test]),batch_size = self.args.batch_size, epochs = self.args.epoch, verbose=1,callbacks=[checkpoint])
             self.model.load_weights(weight_path)
-            best_eva_list = self.model.evaluate(x[test],  y[test])
-            avg_loss += best_eva_list[0]
-            avg_accuracy += best_eva_list[1]
-            print(str(i)+'_Model evaluation: ', best_eva_list,"   Now ACC:",str(round(avg_accuracy*10000)/100/i))
+
+            test_outlier = list(set(test) - set(test_inlier))
+            # evaluate test inlier
+            best_eva_list_inlier = self.model.evaluate(x[test_inlier],  y[test_inlier])
+            avg_loss_inlier  += best_eva_list[0]
+            avg_accuracy_inlier  += best_eva_list[1]
+            print(str(i)+'Inlier Model evaluation: ', best_eva_list_inlier , "   Now ACC:",str(round(avg_accuracy_inlier *10000)/100/i))
+            # evaluate outlier
+            best_eva_list_outlier = self.model.evaluate(x[test_outlier], y[test_outlier])
+            avg_loss_outlier += best_eva_list[0]
+            avg_accuracy_outlier += best_eva_list[1]
+            print(str(i) + ' Outlier Model evaluation: ', best_eva_list_outlier, "   Now ACC:",str(round(avg_accuracy_outlier*10000)/100/i))
+
             i+=1
             y_pred_best = self.model.predict(x[test])
             y_pred_labels = np.argmax(y_pred_best, axis=1)
@@ -129,7 +141,7 @@ class TIMNET_Model(Common_Model):
                 # Extract indices of misclassified and correctly classified samples
                 misclassified_indices = np.where(y_pred_labels != y_true_labels)[0]
                 correctly_classified_indices = np.where(y_pred_labels == y_true_labels)[0]
-                print(misclassified_indices, correctly_classified_indices)
+                # print(misclassified_indices, correctly_classified_indices)
 
                 # Extract test_score values for both sets of samples
                 # print(test_score)

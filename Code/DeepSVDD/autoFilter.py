@@ -1,4 +1,5 @@
 import logging
+import os
 import random
 import time
 
@@ -177,22 +178,28 @@ def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_labe
 
     num_classes = len(set(tuple(row) for row in train_label))
     indices_train = []
+    indices_test = []
     score_test = []
     for cur_class in range(num_classes):
         logger.info(f'Start analyzing normal class: {cur_class} / {num_classes}')
         dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class)
         deepSvdd = one_class_filter((all_data.shape[1], all_data.shape[2]), dataset, 'general_complex', logger)
-        indices_train.append(infer(dataset, deepSvdd, threshold=threshold, train=True))
+        os.makedirs("./cache", exist_ok=True)
+        deepSvdd.save_model(f"cache/{cur_class}.pth")
         dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class, filter_test=True)
+        indices_train.append(infer(dataset, deepSvdd, threshold=threshold, train=True))
+        indices_test.append(infer(dataset, deepSvdd, threshold=threshold, train=False))
         score_test.append(infer(dataset, deepSvdd, threshold=threshold, train=False, get_index=False))
-    print(score_test)
+
     flattened_scores = {k: v for d in score_test for k, v in d.items()}
     test_scores = list(dict(sorted(flattened_scores.items())).values())
 
     filtered_x_index = sorted([int(t.item()) for sublist in indices_train for t in sublist])
     training_indices = [index for index in mask_index_train if index in filtered_x_index] if filtering else mask_index_train
 
-    # print(training_indices)
+    filtered_x_index = sorted([int(t.item()) for sublist in indices_test for t in sublist])
+    testing_indices = [index for index in mask_index_test if
+                        index in filtered_x_index] if filtering else mask_index_test
 
-    return training_indices, test_scores
+    return training_indices, testing_indices, test_scores
 
