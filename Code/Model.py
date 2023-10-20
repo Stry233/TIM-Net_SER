@@ -119,7 +119,7 @@ class TIMNET_Model(Common_Model):
             best_eva_list_outlier = []
             h = self.model.fit(x[train], y_train,validation_data=(x[test],  y[test]),batch_size = self.args.batch_size, epochs = self.args.epoch, verbose=1,callbacks=[checkpoint])
             self.model.load_weights(weight_path)
-
+            
             test_outlier = list(set(test) - set(test_inlier))
             # evaluate test inlier
             best_eva_list_inlier = self.model.evaluate(x[test_inlier],  y[test_inlier])
