@@ -21,6 +21,9 @@ import pandas as pd
 import copy
 import pickle
 
+from sklearn.neighbors import KNeighborsClassifier
+from scipy.stats import mode
+
 from TIMNET import TIMNET
 
 
@@ -99,7 +102,6 @@ class TIMNET_Model(Common_Model):
         if not os.path.exists(resultpath):
             os.mkdir(resultpath)
 
-        i = 1
         now = datetime.datetime.now()
         now_time = datetime.datetime.strftime(now, '%Y-%m-%d_%H-%M-%S')
         kfold = KFold(n_splits=self.args.split_fold, shuffle=True, random_state=self.args.random_seed)
@@ -107,15 +109,18 @@ class TIMNET_Model(Common_Model):
         avg_loss_inlier = 0
         avg_accuracy_outlier = 0
         avg_loss_outlier = 0
+        avg_accuracy = 0
+        avg_loss = 0
         for index, (train, test) in enumerate(kfold.split(x, y)):
-            train, test_inlier, test_score = autoFilter.filter_data(filtering, train, test, x, y, threshold=0.6)
+            train, test_inlier, test_score = autoFilter.filter_data(filtering, train, test, x, y, index, threshold=0.5)
 
             self.create_model()
             y_train = smooth_labels(copy.deepcopy(y[train]), 0.1)
             folder_address = filepath + self.args.data + "_" + str(self.args.random_seed) + "_" + now_time
             if not os.path.exists(folder_address):
                 os.mkdir(folder_address)
-            weight_path = folder_address + '/' + str(self.args.split_fold) + "-fold_weights_best_" + str(i) + ".hdf5"
+            weight_path = folder_address + '/' + str(self.args.split_fold) + "-fold_weights_best_" + str(
+                index) + ".hdf5"
             checkpoint = callbacks.ModelCheckpoint(weight_path, verbose=1, save_weights_only=True, save_best_only=False)
             max_acc = 0
             best_eva_list_inlier = []
@@ -125,22 +130,47 @@ class TIMNET_Model(Common_Model):
             self.model.load_weights(weight_path)
 
             test_outlier = list(set(test) - set(test_inlier))
+
             # evaluate test inlier
             best_eva_list_inlier = self.model.evaluate(x[test_inlier], y[test_inlier])
             avg_loss_inlier += best_eva_list_inlier[0]
             avg_accuracy_inlier += best_eva_list_inlier[1]
-            print(str(i) + 'Inlier Model evaluation: ', best_eva_list_inlier, "   Now ACC:",
-                  str(round(avg_accuracy_inlier * 10000) / 100 / i))
-            # evaluate outlier
-            best_eva_list_outlier = self.model.evaluate(x[test_outlier], y[test_outlier])
-            avg_loss_outlier += best_eva_list_outlier[0]
-            avg_accuracy_outlier += best_eva_list_outlier[1]
-            print(str(i) + ' Outlier Model evaluation: ', best_eva_list_outlier, "   Now ACC:",
-                  str(round(avg_accuracy_outlier * 10000) / 100 / i))
+            print("At fold: " + str(index) + '. Inlier Model evaluation: ', best_eva_list_inlier, "   Now ACC:",
+                  str(round(avg_accuracy_inlier * 10000) / 100 / index))
 
-            i += 1
+            # evaluate outlier
+            if len(test_outlier) > 0:
+                best_eva_list_outlier = self.model.evaluate(x[test_outlier], y[test_outlier])
+                avg_loss_outlier += best_eva_list_outlier[0]
+                avg_accuracy_outlier += best_eva_list_outlier[1]
+                print("At fold: " + str(index) + '. Outlier Model evaluation: ', best_eva_list_outlier, "   Now ACC:",
+                      str(round(avg_accuracy_outlier * 10000) / 100 / index))
+            else:
+                print("Skipped outlier evaluation: empty list!")
+
+            # evaluate all
+            best_eva_list = self.model.evaluate(x[test], y[test])
+            avg_loss += best_eva_list[0]
+            avg_accuracy += best_eva_list[1]
+            print("At fold: " + str(index) + '_Model evaluation: ', best_eva_list, "   Now ACC:",
+                  str(round(avg_accuracy * 10000) / 100 / index))
+
+
+            # Train KNN model on the training set
+            knn = KNeighborsClassifier(n_neighbors=5)  # you can adjust the number of neighbors if needed
+            knn.fit(x[train], np.argmax(y[train], axis=1))
+
+            # Predict using the main model
             y_pred_best = self.model.predict(x[test])
-            y_pred_labels = np.argmax(y_pred_best, axis=1)
+            y_pred_labels_main = np.argmax(y_pred_best, axis=1)
+
+            # Predict using KNN
+            y_pred_labels_knn = knn.predict(x[test])
+
+            x_test_score = test_score
+            y_pred_labels = [y_pred_labels_main[j] if score < 0.5 else y_pred_labels_knn[j]
+                             for j, score in enumerate(x_test_score)]
+
             y_true_labels = np.argmax(y[test], axis=1)
 
             # Extract indices of misclassified and correctly classified samples

@@ -144,7 +144,7 @@ def infer(dataset, deep_SVDD, threshold, train=True, get_index=True):
 
     # Normalize scores
     min_score, max_score = min(all_scores), max(all_scores)
-    normalized_scores =  [(score - min_score) / (max_score - min_score) for score in all_scores]
+    normalized_scores = [(score - min_score) / (max_score - min_score) for score in all_scores]
 
     if get_index:
         return [idx for (inputs, labels, idx), score in zip(eval_loader, normalized_scores) if score <= threshold]
@@ -152,7 +152,7 @@ def infer(dataset, deep_SVDD, threshold, train=True, get_index=True):
         return {idx : score for (inputs, labels, idx), score in zip(eval_loader, normalized_scores)}
 
 
-def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_label, threshold=0.8):
+def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_label, fold_num, threshold=0.8):
     # Set up logging
     # print("train", mask_index_train)
     logging.basicConfig(level=logging.INFO)
@@ -184,8 +184,8 @@ def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_labe
         logger.info(f'Start analyzing normal class: {cur_class} / {num_classes}')
         dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class)
         deepSvdd = one_class_filter((all_data.shape[1], all_data.shape[2]), dataset, 'general_complex', logger)
-        os.makedirs("./cache", exist_ok=True)
-        deepSvdd.save_model(f"cache/{cur_class}.pth")
+        os.makedirs(f"./cache/{fold_num}", exist_ok=True)
+        deepSvdd.save_model(f"cache/{fold_num}/{cur_class}.pth")
         dataset = SERDataset(train_data, train_label, test_data, test_label, normal_class=cur_class, filter_test=True)
         indices_train.append(infer(dataset, deepSvdd, threshold=threshold, train=True))
         indices_test.append(infer(dataset, deepSvdd, threshold=threshold, train=False))
@@ -203,3 +203,6 @@ def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_labe
 
     return training_indices, testing_indices, test_scores
 
+
+# def ano_infer(data, fold_num):
+#     print(data)
