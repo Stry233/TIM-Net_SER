@@ -112,7 +112,7 @@ class TIMNET_Model(Common_Model):
         avg_accuracy = 0
         avg_loss = 0
         for index, (train, test) in enumerate(kfold.split(x, y)):
-            train, test_inlier, test_score = autoFilter.filter_data(filtering, train, test, x, y, index, threshold=0.5)
+            train, test_inlier, test_score = autoFilter.filter_data(filtering, train, test, x, y, (index+1), threshold=0.5)
 
             self.create_model()
             y_train = smooth_labels(copy.deepcopy(y[train]), 0.1)
@@ -120,7 +120,7 @@ class TIMNET_Model(Common_Model):
             if not os.path.exists(folder_address):
                 os.mkdir(folder_address)
             weight_path = folder_address + '/' + str(self.args.split_fold) + "-fold_weights_best_" + str(
-                index) + ".hdf5"
+                (index+1)) + ".hdf5"
             checkpoint = callbacks.ModelCheckpoint(weight_path, verbose=1, save_weights_only=True, save_best_only=False)
             max_acc = 0
             best_eva_list_inlier = []
@@ -135,16 +135,16 @@ class TIMNET_Model(Common_Model):
             best_eva_list_inlier = self.model.evaluate(x[test_inlier], y[test_inlier])
             avg_loss_inlier += best_eva_list_inlier[0]
             avg_accuracy_inlier += best_eva_list_inlier[1]
-            print("At fold: " + str(index) + '. Inlier Model evaluation: ', best_eva_list_inlier, "   Now ACC:",
-                  str(round(avg_accuracy_inlier * 10000) / 100 / index))
+            print("At fold: " + str((index+1)) + '. Inlier Model evaluation: ', best_eva_list_inlier, "   Now ACC:",
+                  str(round(avg_accuracy_inlier * 10000) / 100 / (index+1)))
 
             # evaluate outlier
             if len(test_outlier) > 0:
                 best_eva_list_outlier = self.model.evaluate(x[test_outlier], y[test_outlier])
                 avg_loss_outlier += best_eva_list_outlier[0]
                 avg_accuracy_outlier += best_eva_list_outlier[1]
-                print("At fold: " + str(index) + '. Outlier Model evaluation: ', best_eva_list_outlier, "   Now ACC:",
-                      str(round(avg_accuracy_outlier * 10000) / 100 / index))
+                print("At fold: " + str((index+1)) + '. Outlier Model evaluation: ', best_eva_list_outlier, "   Now ACC:",
+                      str(round(avg_accuracy_outlier * 10000) / 100 / (index+1)))
             else:
                 print("Skipped outlier evaluation: empty list!")
 
@@ -152,8 +152,8 @@ class TIMNET_Model(Common_Model):
             best_eva_list = self.model.evaluate(x[test], y[test])
             avg_loss += best_eva_list[0]
             avg_accuracy += best_eva_list[1]
-            print("At fold: " + str(index) + '_Model evaluation: ', best_eva_list, "   Now ACC:",
-                  str(round(avg_accuracy * 10000) / 100 / index))
+            print("At fold: " + str((index+1)) + '_Model evaluation: ', best_eva_list, "   Now ACC:",
+                  str(round(avg_accuracy * 10000) / 100 / (index+1)))
 
 
             # Train KNN model on the training set
