@@ -40,7 +40,7 @@ class TIMNET:
                  kernel_size=2,
                  nb_stacks=1,
                  dilations=None,
-                 activation = "relu",
+                 activation="relu",
                  dropout_rate=0.1,
                  return_sequences=True,
                  name='TIMNET'):

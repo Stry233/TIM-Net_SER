@@ -11,6 +11,7 @@ from DeepSVDD.dataset import SERDataset
 
 from DeepSVDD.dataset import load_dataset
 
+
 def calculate_label_score(data, deepSVDD):
     """
     Calculate labels and scores for given data.
@@ -46,18 +47,17 @@ def calculate_label_score(data, deepSVDD):
             labels.cpu().data.numpy().tolist()[0],
             scores.cpu().data.numpy().tolist()[0]]
 
+
 def one_class_filter(input_shape, dataset, net_name, logger, xp_path="./DeepSVDD/models/",
                      objective='one-class', nu=0.1, device='cuda', seed=42,
-                     optimizer_name='adam', lr=0.001, n_epochs=200, lr_milestone=None, batch_size=20,
-                     weight_decay=1e-6, pretrain=True, ae_optimizer_name='adam', ae_lr=0.001,
-                     ae_n_epochs=400, ae_lr_milestone=None, ae_batch_size=20, ae_weight_decay=1e-6,
+                     optimizer_name='adam', lr=0.006, n_epochs=100, lr_milestone=None, batch_size=20,
+                     weight_decay=1e-6, pretrain=True, ae_optimizer_name='adam', ae_lr=0.006,
+                     ae_n_epochs=100, ae_lr_milestone=None, ae_batch_size=20, ae_weight_decay=1e-6,
                      n_jobs_dataloader=0):
-
     if lr_milestone is None:
         lr_milestone = [0]
     if ae_lr_milestone is None:
         ae_lr_milestone = [0]
-
 
     # Set seed
     random.seed(seed)
@@ -149,7 +149,7 @@ def infer(dataset, deep_SVDD, threshold, train=True, get_index=True):
     if get_index:
         return [idx for (inputs, labels, idx), score in zip(eval_loader, normalized_scores) if score <= threshold]
     else:
-        return {idx : score for (inputs, labels, idx), score in zip(eval_loader, normalized_scores)}
+        return {idx: score for (inputs, labels, idx), score in zip(eval_loader, normalized_scores)}
 
 
 def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_label, fold_num, threshold=0.8):
@@ -164,11 +164,11 @@ def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_labe
     file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
-    
+
     logger.info('\n---Filtering Start---')
     logger.info('Log file is %s.' % log_file)
     logger.info("GPU is available." if torch.cuda.is_available() else "GPU is not available.")
-    
+
     # generate the data cluster to be analyzed
     train_data = all_data[mask_index_train]
     train_label = all_label[mask_index_train]
@@ -195,14 +195,14 @@ def filter_data(filtering, mask_index_train, mask_index_test, all_data, all_labe
     test_scores = list(dict(sorted(flattened_scores.items())).values())
 
     filtered_x_index = sorted([int(t.item()) for sublist in indices_train for t in sublist])
-    training_indices = [index for index in mask_index_train if index in filtered_x_index] if filtering else mask_index_train
+    training_indices = [index for index in mask_index_train if
+                        index in filtered_x_index] if filtering else mask_index_train
 
     filtered_x_index = sorted([int(t.item()) for sublist in indices_test for t in sublist])
     testing_indices = [index for index in mask_index_test if
-                        index in filtered_x_index] if filtering else mask_index_test
+                       index in filtered_x_index] if filtering else mask_index_test
 
     return training_indices, testing_indices, test_scores
-
 
 # def ano_infer(data, fold_num):
 #     print(data)

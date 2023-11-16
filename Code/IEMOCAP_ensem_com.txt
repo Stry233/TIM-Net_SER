@@ -1,0 +1,25 @@
+###gpus:[PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+TIMNET MODEL SHAPE: (606, 39)
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+---Start evaluation---
+---Start evaluation---
+---Start evaluation---
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+---Start evaluation---
+---Start evaluation---
+---Start evaluation---
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+---Start evaluation---
+---Start evaluation---
+---Start evaluation---
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+TIMNET MODEL SHAPE-DeepSVDD: (5, 606, 39)
+---Start evaluation---
+---Start evaluation---
+---Start evaluation---
+Input Shape= (None, 606, 39)
+Temporal create succes!
+Epoch 1/500
