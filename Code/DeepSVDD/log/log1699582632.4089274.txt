@@ -1,0 +1,487 @@
+2023-11-09 21:17:12,409 - root - INFO - 
+---Filtering Start---
+2023-11-09 21:17:12,409 - root - INFO - Log file is ./DeepSVDD/log/log1699582632.4089274.txt.
+2023-11-09 21:17:12,409 - root - INFO - GPU is available.
+2023-11-09 21:17:12,411 - root - INFO - Start analyzing normal class: 0 / 7
+2023-11-09 21:17:12,414 - root - INFO - Set seed to 42.
+2023-11-09 21:17:12,414 - root - INFO - Computation device: cuda
+2023-11-09 21:17:12,414 - root - INFO - Number of dataloader workers: 0
+2023-11-09 21:17:12,419 - root - INFO - Pretraining: True
+2023-11-09 21:17:12,419 - root - INFO - 
+---Pretraining Start---
+2023-11-09 21:17:12,419 - root - INFO - Pretraining optimizer: adam
+2023-11-09 21:17:12,419 - root - INFO - Pretraining learning rate: 0.001
+2023-11-09 21:17:12,419 - root - INFO - Pretraining epochs: 4
+2023-11-09 21:17:12,419 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-11-09 21:17:12,419 - root - INFO - Pretraining batch size: 20
+2023-11-09 21:17:12,419 - root - INFO - Pretraining weight decay: 1e-06
+2023-11-09 21:17:12,488 - root - INFO - Starting pretraining on cuda...
+2023-11-09 21:17:13,579 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:13,623 - root - INFO - Epoch: 1/4
+	  Time:       1.134 sec
+	  Train Loss: 56561198.66666666
+	  Test Loss:  67791005.33333333
+	  Test AUC:   65.91
+
+2023-11-09 21:17:13,757 - root - INFO - Epoch: 2/4
+	  Time:       0.133 sec
+	  Train Loss: 55537642.66666666
+	  Test Loss:  67785500.00000000
+	  Test AUC:   65.91
+
+2023-11-09 21:17:13,896 - root - INFO - Epoch: 3/4
+	  Time:       0.138 sec
+	  Train Loss: 55790217.33333334
+	  Test Loss:  67785225.33333333
+	  Test AUC:   65.91
+
+2023-11-09 21:17:14,031 - root - INFO - Epoch: 4/4
+	  Time:       0.133 sec
+	  Train Loss: 55566984.00000000
+	  Test Loss:  67786017.33333333
+	  Test AUC:   65.91
+
+2023-11-09 21:17:14,031 - root - INFO - Pretraining time: 1.543
+2023-11-09 21:17:14,031 - root - INFO - Finished pretraining.
+2023-11-09 21:17:14,037 - root - INFO - Testing autoencoder...
+2023-11-09 21:17:14,061 - root - INFO - Test set Loss: 67786017.33333333
+2023-11-09 21:17:14,061 - root - INFO - Autoencoder testing time: 0.024
+2023-11-09 21:17:14,061 - root - INFO - Finished testing autoencoder.
+2023-11-09 21:17:14,065 - root - INFO - 
+---Training Start---
+2023-11-09 21:17:14,065 - root - INFO - Training optimizer: adam
+2023-11-09 21:17:14,065 - root - INFO - Training learning rate: 0.001
+2023-11-09 21:17:14,065 - root - INFO - Training epochs: 2
+2023-11-09 21:17:14,065 - root - INFO - Training learning rate scheduler milestones: [0]
+2023-11-09 21:17:14,065 - root - INFO - Training batch size: 20
+2023-11-09 21:17:14,065 - root - INFO - Training weight decay: 1e-06
+2023-11-09 21:17:14,068 - root - INFO - Initializing center c...
+2023-11-09 21:17:14,075 - root - INFO - Center c initialized.
+2023-11-09 21:17:14,075 - root - INFO - Starting training...
+2023-11-09 21:17:14,111 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:14,111 - root - INFO - Epoch: 1/2
+	  Time:       0.035 sec
+	  Train Loss: 45210.99088542
+	  Test AUC:   40.34
+
+2023-11-09 21:17:14,149 - root - INFO - Epoch: 2/2
+	  Time:       0.038 sec
+	  Train Loss: 44458.60026042
+	  Test AUC:   40.34
+
+2023-11-09 21:17:14,149 - root - INFO - Training time: 0.074
+2023-11-09 21:17:14,149 - root - INFO - Finished training.
+2023-11-09 21:17:14,511 - root - INFO - Start analyzing normal class: 1 / 7
+2023-11-09 21:17:14,514 - root - INFO - Set seed to 42.
+2023-11-09 21:17:14,514 - root - INFO - Computation device: cuda
+2023-11-09 21:17:14,514 - root - INFO - Number of dataloader workers: 0
+2023-11-09 21:17:14,518 - root - INFO - Pretraining: True
+2023-11-09 21:17:14,518 - root - INFO - 
+---Pretraining Start---
+2023-11-09 21:17:14,518 - root - INFO - Pretraining optimizer: adam
+2023-11-09 21:17:14,518 - root - INFO - Pretraining learning rate: 0.001
+2023-11-09 21:17:14,518 - root - INFO - Pretraining epochs: 4
+2023-11-09 21:17:14,518 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-11-09 21:17:14,518 - root - INFO - Pretraining batch size: 20
+2023-11-09 21:17:14,518 - root - INFO - Pretraining weight decay: 1e-06
+2023-11-09 21:17:14,571 - root - INFO - Starting pretraining on cuda...
+2023-11-09 21:17:14,720 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:14,750 - root - INFO - Epoch: 1/4
+	  Time:       0.178 sec
+	  Train Loss: 73306453.33333333
+	  Test Loss:  67787977.33333333
+	  Test AUC:   64.19
+
+2023-11-09 21:17:14,890 - root - INFO - Epoch: 2/4
+	  Time:       0.139 sec
+	  Train Loss: 72063221.33333333
+	  Test Loss:  67783190.66666667
+	  Test AUC:   64.19
+
+2023-11-09 21:17:15,037 - root - INFO - Epoch: 3/4
+	  Time:       0.145 sec
+	  Train Loss: 72064906.66666667
+	  Test Loss:  67784509.33333333
+	  Test AUC:   64.19
+
+2023-11-09 21:17:15,170 - root - INFO - Epoch: 4/4
+	  Time:       0.132 sec
+	  Train Loss: 72272584.00000000
+	  Test Loss:  67786460.00000000
+	  Test AUC:   64.19
+
+2023-11-09 21:17:15,170 - root - INFO - Pretraining time: 0.599
+2023-11-09 21:17:15,170 - root - INFO - Finished pretraining.
+2023-11-09 21:17:15,176 - root - INFO - Testing autoencoder...
+2023-11-09 21:17:15,200 - root - INFO - Test set Loss: 67786460.00000000
+2023-11-09 21:17:15,200 - root - INFO - Autoencoder testing time: 0.024
+2023-11-09 21:17:15,200 - root - INFO - Finished testing autoencoder.
+2023-11-09 21:17:15,204 - root - INFO - 
+---Training Start---
+2023-11-09 21:17:15,204 - root - INFO - Training optimizer: adam
+2023-11-09 21:17:15,204 - root - INFO - Training learning rate: 0.001
+2023-11-09 21:17:15,204 - root - INFO - Training epochs: 2
+2023-11-09 21:17:15,204 - root - INFO - Training learning rate scheduler milestones: [0]
+2023-11-09 21:17:15,204 - root - INFO - Training batch size: 20
+2023-11-09 21:17:15,204 - root - INFO - Training weight decay: 1e-06
+2023-11-09 21:17:15,207 - root - INFO - Initializing center c...
+2023-11-09 21:17:15,214 - root - INFO - Center c initialized.
+2023-11-09 21:17:15,214 - root - INFO - Starting training...
+2023-11-09 21:17:15,249 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:15,249 - root - INFO - Epoch: 1/2
+	  Time:       0.035 sec
+	  Train Loss: 58310.87109375
+	  Test AUC:   36.74
+
+2023-11-09 21:17:15,287 - root - INFO - Epoch: 2/2
+	  Time:       0.037 sec
+	  Train Loss: 56947.23437500
+	  Test AUC:   35.35
+
+2023-11-09 21:17:15,287 - root - INFO - Training time: 0.073
+2023-11-09 21:17:15,287 - root - INFO - Finished training.
+2023-11-09 21:17:15,549 - root - INFO - Start analyzing normal class: 2 / 7
+2023-11-09 21:17:15,552 - root - INFO - Set seed to 42.
+2023-11-09 21:17:15,552 - root - INFO - Computation device: cuda
+2023-11-09 21:17:15,552 - root - INFO - Number of dataloader workers: 0
+2023-11-09 21:17:15,556 - root - INFO - Pretraining: True
+2023-11-09 21:17:15,556 - root - INFO - 
+---Pretraining Start---
+2023-11-09 21:17:15,556 - root - INFO - Pretraining optimizer: adam
+2023-11-09 21:17:15,556 - root - INFO - Pretraining learning rate: 0.001
+2023-11-09 21:17:15,556 - root - INFO - Pretraining epochs: 4
+2023-11-09 21:17:15,556 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-11-09 21:17:15,556 - root - INFO - Pretraining batch size: 20
+2023-11-09 21:17:15,556 - root - INFO - Pretraining weight decay: 1e-06
+2023-11-09 21:17:15,609 - root - INFO - Starting pretraining on cuda...
+2023-11-09 21:17:15,757 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:15,788 - root - INFO - Epoch: 1/4
+	  Time:       0.178 sec
+	  Train Loss: 60990010.66666666
+	  Test Loss:  67790205.33333333
+	  Test AUC:   59.58
+
+2023-11-09 21:17:15,930 - root - INFO - Epoch: 2/4
+	  Time:       0.140 sec
+	  Train Loss: 63773510.66666666
+	  Test Loss:  67783298.66666667
+	  Test AUC:   59.58
+
+2023-11-09 21:17:16,073 - root - INFO - Epoch: 3/4
+	  Time:       0.142 sec
+	  Train Loss: 64325764.00000000
+	  Test Loss:  67783824.00000000
+	  Test AUC:   59.58
+
+2023-11-09 21:17:16,209 - root - INFO - Epoch: 4/4
+	  Time:       0.135 sec
+	  Train Loss: 61936309.33333334
+	  Test Loss:  67785318.66666667
+	  Test AUC:   59.58
+
+2023-11-09 21:17:16,209 - root - INFO - Pretraining time: 0.599
+2023-11-09 21:17:16,209 - root - INFO - Finished pretraining.
+2023-11-09 21:17:16,215 - root - INFO - Testing autoencoder...
+2023-11-09 21:17:16,240 - root - INFO - Test set Loss: 67785318.66666667
+2023-11-09 21:17:16,240 - root - INFO - Autoencoder testing time: 0.024
+2023-11-09 21:17:16,240 - root - INFO - Finished testing autoencoder.
+2023-11-09 21:17:16,244 - root - INFO - 
+---Training Start---
+2023-11-09 21:17:16,244 - root - INFO - Training optimizer: adam
+2023-11-09 21:17:16,244 - root - INFO - Training learning rate: 0.001
+2023-11-09 21:17:16,244 - root - INFO - Training epochs: 2
+2023-11-09 21:17:16,244 - root - INFO - Training learning rate scheduler milestones: [0]
+2023-11-09 21:17:16,244 - root - INFO - Training batch size: 20
+2023-11-09 21:17:16,244 - root - INFO - Training weight decay: 1e-06
+2023-11-09 21:17:16,247 - root - INFO - Initializing center c...
+2023-11-09 21:17:16,254 - root - INFO - Center c initialized.
+2023-11-09 21:17:16,254 - root - INFO - Starting training...
+2023-11-09 21:17:16,291 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:16,291 - root - INFO - Epoch: 1/2
+	  Time:       0.037 sec
+	  Train Loss: 52334.37890625
+	  Test AUC:   37.28
+
+2023-11-09 21:17:16,329 - root - INFO - Epoch: 2/2
+	  Time:       0.037 sec
+	  Train Loss: 52159.35546875
+	  Test AUC:   40.42
+
+2023-11-09 21:17:16,329 - root - INFO - Training time: 0.075
+2023-11-09 21:17:16,329 - root - INFO - Finished training.
+2023-11-09 21:17:16,601 - root - INFO - Start analyzing normal class: 3 / 7
+2023-11-09 21:17:16,604 - root - INFO - Set seed to 42.
+2023-11-09 21:17:16,604 - root - INFO - Computation device: cuda
+2023-11-09 21:17:16,604 - root - INFO - Number of dataloader workers: 0
+2023-11-09 21:17:16,608 - root - INFO - Pretraining: True
+2023-11-09 21:17:16,608 - root - INFO - 
+---Pretraining Start---
+2023-11-09 21:17:16,608 - root - INFO - Pretraining optimizer: adam
+2023-11-09 21:17:16,608 - root - INFO - Pretraining learning rate: 0.001
+2023-11-09 21:17:16,608 - root - INFO - Pretraining epochs: 4
+2023-11-09 21:17:16,608 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-11-09 21:17:16,608 - root - INFO - Pretraining batch size: 20
+2023-11-09 21:17:16,608 - root - INFO - Pretraining weight decay: 1e-06
+2023-11-09 21:17:16,660 - root - INFO - Starting pretraining on cuda...
+2023-11-09 21:17:16,774 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:16,806 - root - INFO - Epoch: 1/4
+	  Time:       0.145 sec
+	  Train Loss: 55303178.66666666
+	  Test Loss:  67788618.66666667
+	  Test AUC:   45.45
+
+2023-11-09 21:17:16,951 - root - INFO - Epoch: 2/4
+	  Time:       0.144 sec
+	  Train Loss: 56006088.00000000
+	  Test Loss:  67782797.33333333
+	  Test AUC:   45.45
+
+2023-11-09 21:17:17,096 - root - INFO - Epoch: 3/4
+	  Time:       0.144 sec
+	  Train Loss: 55178388.00000000
+	  Test Loss:  67783444.00000000
+	  Test AUC:   45.45
+
+2023-11-09 21:17:17,234 - root - INFO - Epoch: 4/4
+	  Time:       0.137 sec
+	  Train Loss: 55030133.33333334
+	  Test Loss:  67785872.00000000
+	  Test AUC:   45.45
+
+2023-11-09 21:17:17,234 - root - INFO - Pretraining time: 0.574
+2023-11-09 21:17:17,234 - root - INFO - Finished pretraining.
+2023-11-09 21:17:17,240 - root - INFO - Testing autoencoder...
+2023-11-09 21:17:17,265 - root - INFO - Test set Loss: 67785872.00000000
+2023-11-09 21:17:17,265 - root - INFO - Autoencoder testing time: 0.024
+2023-11-09 21:17:17,265 - root - INFO - Finished testing autoencoder.
+2023-11-09 21:17:17,270 - root - INFO - 
+---Training Start---
+2023-11-09 21:17:17,270 - root - INFO - Training optimizer: adam
+2023-11-09 21:17:17,270 - root - INFO - Training learning rate: 0.001
+2023-11-09 21:17:17,270 - root - INFO - Training epochs: 2
+2023-11-09 21:17:17,270 - root - INFO - Training learning rate scheduler milestones: [0]
+2023-11-09 21:17:17,270 - root - INFO - Training batch size: 20
+2023-11-09 21:17:17,270 - root - INFO - Training weight decay: 1e-06
+2023-11-09 21:17:17,272 - root - INFO - Initializing center c...
+2023-11-09 21:17:17,279 - root - INFO - Center c initialized.
+2023-11-09 21:17:17,279 - root - INFO - Starting training...
+2023-11-09 21:17:17,317 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:17,317 - root - INFO - Epoch: 1/2
+	  Time:       0.037 sec
+	  Train Loss: 44782.11328125
+	  Test AUC:   47.16
+
+2023-11-09 21:17:17,354 - root - INFO - Epoch: 2/2
+	  Time:       0.037 sec
+	  Train Loss: 43596.07812500
+	  Test AUC:   56.82
+
+2023-11-09 21:17:17,354 - root - INFO - Training time: 0.074
+2023-11-09 21:17:17,354 - root - INFO - Finished training.
+2023-11-09 21:17:17,616 - root - INFO - Start analyzing normal class: 4 / 7
+2023-11-09 21:17:17,619 - root - INFO - Set seed to 42.
+2023-11-09 21:17:17,619 - root - INFO - Computation device: cuda
+2023-11-09 21:17:17,619 - root - INFO - Number of dataloader workers: 0
+2023-11-09 21:17:17,690 - root - INFO - Pretraining: True
+2023-11-09 21:17:17,690 - root - INFO - 
+---Pretraining Start---
+2023-11-09 21:17:17,690 - root - INFO - Pretraining optimizer: adam
+2023-11-09 21:17:17,690 - root - INFO - Pretraining learning rate: 0.001
+2023-11-09 21:17:17,690 - root - INFO - Pretraining epochs: 4
+2023-11-09 21:17:17,690 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-11-09 21:17:17,690 - root - INFO - Pretraining batch size: 20
+2023-11-09 21:17:17,690 - root - INFO - Pretraining weight decay: 1e-06
+2023-11-09 21:17:17,741 - root - INFO - Starting pretraining on cuda...
+2023-11-09 21:17:18,019 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:18,048 - root - INFO - Epoch: 1/4
+	  Time:       0.305 sec
+	  Train Loss: 83863449.33333333
+	  Test Loss:  67784810.66666667
+	  Test AUC:   29.29
+
+2023-11-09 21:17:18,294 - root - INFO - Epoch: 2/4
+	  Time:       0.245 sec
+	  Train Loss: 83903189.33333333
+	  Test Loss:  67788145.33333333
+	  Test AUC:   29.29
+
+2023-11-09 21:17:18,540 - root - INFO - Epoch: 3/4
+	  Time:       0.245 sec
+	  Train Loss: 83751052.00000000
+	  Test Loss:  67792186.66666667
+	  Test AUC:   29.29
+
+2023-11-09 21:17:18,789 - root - INFO - Epoch: 4/4
+	  Time:       0.247 sec
+	  Train Loss: 84133773.33333333
+	  Test Loss:  67797182.66666667
+	  Test AUC:   29.29
+
+2023-11-09 21:17:18,789 - root - INFO - Pretraining time: 1.047
+2023-11-09 21:17:18,789 - root - INFO - Finished pretraining.
+2023-11-09 21:17:18,796 - root - INFO - Testing autoencoder...
+2023-11-09 21:17:18,822 - root - INFO - Test set Loss: 67797182.66666667
+2023-11-09 21:17:18,822 - root - INFO - Autoencoder testing time: 0.026
+2023-11-09 21:17:18,822 - root - INFO - Finished testing autoencoder.
+2023-11-09 21:17:18,827 - root - INFO - 
+---Training Start---
+2023-11-09 21:17:18,827 - root - INFO - Training optimizer: adam
+2023-11-09 21:17:18,827 - root - INFO - Training learning rate: 0.001
+2023-11-09 21:17:18,827 - root - INFO - Training epochs: 2
+2023-11-09 21:17:18,827 - root - INFO - Training learning rate scheduler milestones: [0]
+2023-11-09 21:17:18,827 - root - INFO - Training batch size: 20
+2023-11-09 21:17:18,827 - root - INFO - Training weight decay: 1e-06
+2023-11-09 21:17:18,830 - root - INFO - Initializing center c...
+2023-11-09 21:17:18,843 - root - INFO - Center c initialized.
+2023-11-09 21:17:18,843 - root - INFO - Starting training...
+2023-11-09 21:17:18,905 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:18,905 - root - INFO - Epoch: 1/2
+	  Time:       0.061 sec
+	  Train Loss: 67111.69140625
+	  Test AUC:   69.49
+
+2023-11-09 21:17:18,969 - root - INFO - Epoch: 2/2
+	  Time:       0.063 sec
+	  Train Loss: 65388.29817708
+	  Test AUC:   70.51
+
+2023-11-09 21:17:18,969 - root - INFO - Training time: 0.125
+2023-11-09 21:17:18,969 - root - INFO - Finished training.
+2023-11-09 21:17:19,436 - root - INFO - Start analyzing normal class: 5 / 7
+2023-11-09 21:17:19,437 - root - INFO - Set seed to 42.
+2023-11-09 21:17:19,437 - root - INFO - Computation device: cuda
+2023-11-09 21:17:19,437 - root - INFO - Number of dataloader workers: 0
+2023-11-09 21:17:19,441 - root - INFO - Pretraining: True
+2023-11-09 21:17:19,441 - root - INFO - 
+---Pretraining Start---
+2023-11-09 21:17:19,441 - root - INFO - Pretraining optimizer: adam
+2023-11-09 21:17:19,441 - root - INFO - Pretraining learning rate: 0.001
+2023-11-09 21:17:19,441 - root - INFO - Pretraining epochs: 4
+2023-11-09 21:17:19,441 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-11-09 21:17:19,441 - root - INFO - Pretraining batch size: 20
+2023-11-09 21:17:19,441 - root - INFO - Pretraining weight decay: 1e-06
+2023-11-09 21:17:19,494 - root - INFO - Starting pretraining on cuda...
+2023-11-09 21:17:19,654 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:19,685 - root - INFO - Epoch: 1/4
+	  Time:       0.190 sec
+	  Train Loss: 76858076.00000000
+	  Test Loss:  67784742.66666667
+	  Test AUC:   41.88
+
+2023-11-09 21:17:19,822 - root - INFO - Epoch: 2/4
+	  Time:       0.136 sec
+	  Train Loss: 75661426.66666667
+	  Test Loss:  67781644.00000000
+	  Test AUC:   41.88
+
+2023-11-09 21:17:19,966 - root - INFO - Epoch: 3/4
+	  Time:       0.143 sec
+	  Train Loss: 76582066.66666667
+	  Test Loss:  67783830.66666667
+	  Test AUC:   41.88
+
+2023-11-09 21:17:20,104 - root - INFO - Epoch: 4/4
+	  Time:       0.136 sec
+	  Train Loss: 75900834.66666667
+	  Test Loss:  67786714.66666667
+	  Test AUC:   41.88
+
+2023-11-09 21:17:20,104 - root - INFO - Pretraining time: 0.610
+2023-11-09 21:17:20,104 - root - INFO - Finished pretraining.
+2023-11-09 21:17:20,110 - root - INFO - Testing autoencoder...
+2023-11-09 21:17:20,134 - root - INFO - Test set Loss: 67786714.66666667
+2023-11-09 21:17:20,134 - root - INFO - Autoencoder testing time: 0.024
+2023-11-09 21:17:20,134 - root - INFO - Finished testing autoencoder.
+2023-11-09 21:17:20,139 - root - INFO - 
+---Training Start---
+2023-11-09 21:17:20,139 - root - INFO - Training optimizer: adam
+2023-11-09 21:17:20,139 - root - INFO - Training learning rate: 0.001
+2023-11-09 21:17:20,139 - root - INFO - Training epochs: 2
+2023-11-09 21:17:20,139 - root - INFO - Training learning rate scheduler milestones: [0]
+2023-11-09 21:17:20,139 - root - INFO - Training batch size: 20
+2023-11-09 21:17:20,139 - root - INFO - Training weight decay: 1e-06
+2023-11-09 21:17:20,142 - root - INFO - Initializing center c...
+2023-11-09 21:17:20,149 - root - INFO - Center c initialized.
+2023-11-09 21:17:20,149 - root - INFO - Starting training...
+2023-11-09 21:17:20,185 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:20,185 - root - INFO - Epoch: 1/2
+	  Time:       0.037 sec
+	  Train Loss: 56887.59244792
+	  Test AUC:   48.75
+
+2023-11-09 21:17:20,223 - root - INFO - Epoch: 2/2
+	  Time:       0.038 sec
+	  Train Loss: 57503.00781250
+	  Test AUC:   52.19
+
+2023-11-09 21:17:20,223 - root - INFO - Training time: 0.075
+2023-11-09 21:17:20,223 - root - INFO - Finished training.
+2023-11-09 21:17:20,499 - root - INFO - Start analyzing normal class: 6 / 7
+2023-11-09 21:17:20,500 - root - INFO - Set seed to 42.
+2023-11-09 21:17:20,500 - root - INFO - Computation device: cuda
+2023-11-09 21:17:20,500 - root - INFO - Number of dataloader workers: 0
+2023-11-09 21:17:20,504 - root - INFO - Pretraining: True
+2023-11-09 21:17:20,504 - root - INFO - 
+---Pretraining Start---
+2023-11-09 21:17:20,504 - root - INFO - Pretraining optimizer: adam
+2023-11-09 21:17:20,504 - root - INFO - Pretraining learning rate: 0.001
+2023-11-09 21:17:20,504 - root - INFO - Pretraining epochs: 4
+2023-11-09 21:17:20,504 - root - INFO - Pretraining learning rate scheduler milestones: [0]
+2023-11-09 21:17:20,504 - root - INFO - Pretraining batch size: 20
+2023-11-09 21:17:20,504 - root - INFO - Pretraining weight decay: 1e-06
+2023-11-09 21:17:20,557 - root - INFO - Starting pretraining on cuda...
+2023-11-09 21:17:20,672 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:20,703 - root - INFO - Epoch: 1/4
+	  Time:       0.145 sec
+	  Train Loss: 59672800.00000000
+	  Test Loss:  67785721.33333333
+	  Test AUC:   73.49
+
+2023-11-09 21:17:20,844 - root - INFO - Epoch: 2/4
+	  Time:       0.140 sec
+	  Train Loss: 60177344.00000000
+	  Test Loss:  67782522.66666667
+	  Test AUC:   73.49
+
+2023-11-09 21:17:20,993 - root - INFO - Epoch: 3/4
+	  Time:       0.148 sec
+	  Train Loss: 59830380.00000000
+	  Test Loss:  67784328.00000000
+	  Test AUC:   73.49
+
+2023-11-09 21:17:21,131 - root - INFO - Epoch: 4/4
+	  Time:       0.136 sec
+	  Train Loss: 59237396.00000000
+	  Test Loss:  67786414.66666667
+	  Test AUC:   73.49
+
+2023-11-09 21:17:21,131 - root - INFO - Pretraining time: 0.574
+2023-11-09 21:17:21,131 - root - INFO - Finished pretraining.
+2023-11-09 21:17:21,137 - root - INFO - Testing autoencoder...
+2023-11-09 21:17:21,163 - root - INFO - Test set Loss: 67786414.66666667
+2023-11-09 21:17:21,163 - root - INFO - Autoencoder testing time: 0.025
+2023-11-09 21:17:21,163 - root - INFO - Finished testing autoencoder.
+2023-11-09 21:17:21,168 - root - INFO - 
+---Training Start---
+2023-11-09 21:17:21,168 - root - INFO - Training optimizer: adam
+2023-11-09 21:17:21,168 - root - INFO - Training learning rate: 0.001
+2023-11-09 21:17:21,168 - root - INFO - Training epochs: 2
+2023-11-09 21:17:21,168 - root - INFO - Training learning rate scheduler milestones: [0]
+2023-11-09 21:17:21,168 - root - INFO - Training batch size: 20
+2023-11-09 21:17:21,168 - root - INFO - Training weight decay: 1e-06
+2023-11-09 21:17:21,171 - root - INFO - Initializing center c...
+2023-11-09 21:17:21,178 - root - INFO - Center c initialized.
+2023-11-09 21:17:21,178 - root - INFO - Starting training...
+2023-11-09 21:17:21,216 - root - INFO -   LR scheduler: new learning rate is 0.0001
+2023-11-09 21:17:21,216 - root - INFO - Epoch: 1/2
+	  Time:       0.038 sec
+	  Train Loss: 49746.63151042
+	  Test AUC:   32.56
+
+2023-11-09 21:17:21,254 - root - INFO - Epoch: 2/2
+	  Time:       0.037 sec
+	  Train Loss: 48086.73828125
+	  Test AUC:   33.49
+
+2023-11-09 21:17:21,254 - root - INFO - Training time: 0.076
+2023-11-09 21:17:21,254 - root - INFO - Finished training.
