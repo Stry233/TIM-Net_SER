@@ -129,6 +129,7 @@ class TIMNET_Model(Common_Model):
                                epochs=self.args.epoch, verbose=1, callbacks=[checkpoint])
             self.model.load_weights(weight_path)
 
+            print(set(test), set(test_inlier))
             test_outlier = list(set(test) - set(test_inlier))
 
             # evaluate test inlier
@@ -155,19 +156,23 @@ class TIMNET_Model(Common_Model):
             print("At fold: " + str((index+1)) + '_Model evaluation: ', best_eva_list, "   Now ACC:",
                   str(round(avg_accuracy * 10000) / 100 / (index+1)))
 
-
             # Train KNN model on the training set
             knn = KNeighborsClassifier(n_neighbors=5)  # you can adjust the number of neighbors if needed
-            knn.fit(x[train], np.argmax(y[train], axis=1))
+            # print(x[train].shape, np.argmax(y[train], axis=1).shape)
+            print(test_outlier)
+            x_train_reshaped = x[test_outlier].reshape(x[test_outlier].shape[0], -1)
+            knn.fit(x_train_reshaped, np.argmax(y[test_outlier], axis=1))
 
             # Predict using the main model
             y_pred_best = self.model.predict(x[test])
             y_pred_labels_main = np.argmax(y_pred_best, axis=1)
 
             # Predict using KNN
-            y_pred_labels_knn = knn.predict(x[test])
+            y_pred_labels_knn = knn.predict(x[test].reshape(x[test].shape[0], -1))
 
             x_test_score = test_score
+            print(f"Outlierness score: {x_test_score}")
+
             y_pred_labels = [y_pred_labels_main[j] if score < 0.5 else y_pred_labels_knn[j]
                              for j, score in enumerate(x_test_score)]
 
